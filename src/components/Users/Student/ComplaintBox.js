@@ -1,7 +1,7 @@
 import { Avatar, Box, Button, Modal, TextField, Typography } from "@mui/material";
 import React from "react";
 
-const Complaint = ({ open, setOpen }) => {
+const ComplaintBox = ({ open, setOpen }) => {
 	return (
 		<Modal
 			open={open}
@@ -35,4 +35,4 @@ const Complaint = ({ open, setOpen }) => {
 	);
 };
 
-export default Complaint;
+export default ComplaintBox;
