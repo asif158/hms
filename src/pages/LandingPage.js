@@ -1,6 +1,6 @@
 import React from "react";
 import { Component, useRef } from "react";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 import {ReactToPrint}  from "react-to-print";
 import { Page,Text,Image,Document,StyleSheet } from "@react-pdf/renderer";
@@ -25,6 +25,7 @@ const LandingPage = () => {
           height: "100vh",
           display: "flex",
           justifyContent: "center",
+         //buffer 
 
           alignItems: "center",
           // backgroundImage:
