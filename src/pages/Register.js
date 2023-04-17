@@ -1,116 +1,207 @@
-import { Box, Button, TextField } from "@mui/material";
-import React, { useState } from "react";
+import styled from "@emotion/styled";
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../context/Context";
 
 const Register = () => {
-	const [id, setId] = useState("");
 	const [name, setName] = useState("");
 	const [phone, setPhone] = useState("");
 	const [address, setAddress] = useState("");
 	const [password, setPassword] = useState("");
-	const [idError, setIdError] = useState(false);
-	const [nameError, setNameError] = useState(false);
-	const [phoneError, setPhoneError] = useState(false);
-	const [addressError, setAddressError] = useState(false);
-	const [passwordError, setPasswordError] = useState(false);
-
+	const [type, setType] = useState("");
+	const { registerUser } = useContext(AppContext);
 	const Navigate = useNavigate();
 
-	const handleSubmit = (event) => {
+	const StyledButton = styled(Button)`
+		margin-top: 20px;
+		position: relative;
+		left: calc((100% - 150px) / 2);
+	`;
+
+	const handleSubmit = async (event) => {
 		event.preventDefault();
-
-		setIdError(false);
-		setPasswordError(false);
-
-		if (id === "") {
-			setIdError(true);
-		}
-		if (name === "") {
-			setNameError(true);
-		}
-		if (phone === "") {
-			setPhoneError(true);
-		}
-		if (password === "") {
-			setPasswordError(true);
-		}
-		if (address === "") {
-			setAddressError(true);
-		}
-
-		if (id && password) {
-			Navigate("/home");
-		}
+		await registerUser({ type, name, phone, address: address.trim(), password });
+		Navigate("/home");
 	};
 	return (
 		<>
-			<Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-				<form autoComplete="off" onSubmit={handleSubmit} style={{ position: "relative", top: "50px" }}>
-					<h2>Register</h2>
-					<TextField
-						label="Full Name"
-						onChange={(e) => setName(e.target.value)}
-						required
-						variant="outlined"
-						color="secondary"
-						sx={{ mb: 3 }}
-						fullWidth
-						value={name}
-						error={nameError}
-					/>
-					<TextField
-						label="ID"
-						onChange={(e) => setId(e.target.value)}
-						required
-						variant="outlined"
-						color="secondary"
-						sx={{ mb: 3 }}
-						fullWidth
-						value={id}
-						error={idError}
-					/>
-					<TextField
-						label="Phone"
-						onChange={(e) => setPhone(e.target.value)}
-						required
-						variant="outlined"
-						color="secondary"
-						sx={{ mb: 3 }}
-						type="tel"
-						inputProps={{ pattern: "[0-9]{10}" }}
-						fullWidth
-						value={phone}
-						error={phoneError}
-					/>
-					<TextField
-						label="Address"
-						onChange={(e) => setAddress(e.target.value)}
-						required
-						multiline
-						minRows={3}
-						variant="outlined"
-						color="secondary"
-						sx={{ mb: 3 }}
-						fullWidth
-						value={address}
-						error={addressError}
-					/>
-					<TextField
-						label="Password"
-						onChange={(e) => setPassword(e.target.value)}
-						required
-						variant="outlined"
-						color="secondary"
-						type="password"
-						value={password}
-						error={passwordError}
-						fullWidth
-						sx={{ mb: 3 }}
-					/>
-					<Button variant="outlined" color="success" type="submit">
-						Register
-					</Button>
-				</form>
+			<Box
+				sx={{
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "flex-start",
+					flexWrap: "wrap",
+				}}
+			>
+				<h1
+					style={{
+						textAlign: "center",
+						marginBottom: "45px",
+						fontSize: "60px",
+						width: "100%",
+					}}
+				>
+					Register
+				</h1>
+
+				<FormControl
+					fullWidth
+					sx={{
+						marginX: "16%",
+						marginY: "20px",
+						".MuiInputBase-root": { borderRadius: "25px" },
+						label: {
+							marginLeft: "10px",
+						},
+						"label.MuiInputLabel-shrink ": {
+							marginLeft: 0,
+						},
+						".MuiSelect-select": {
+							marginLeft: "10px",
+						},
+					}}
+				>
+					<InputLabel id="demo-simple-select-label">Register as</InputLabel>
+					<Select
+						labelId="demo-simple-select-label"
+						id="demo-simple-select"
+						value={type}
+						label="Register as"
+						onChange={(e) => setType(e.target.value)}
+					>
+						<MenuItem value={"ST"}>Student</MenuItem>
+						<MenuItem value={"SS"}>Hostel Staff</MenuItem>
+						<MenuItem value={"SW"}>Warden</MenuItem>
+						<MenuItem value={"MM"}>Mess Manager</MenuItem>
+					</Select>
+				</FormControl>
+				{type.length > 0 && (
+					<form autoComplete="off" onSubmit={handleSubmit} style={{ width: "100%", margin: "0 16%" }}>
+						<TextField
+							label="Full Name"
+							onChange={(e) => setName(e.target.value)}
+							required
+							variant="outlined"
+							color="primary"
+							sx={{
+								mb: 3,
+								".MuiInputBase-root": { borderRadius: "25px" },
+								label: {
+									marginLeft: "10px",
+								},
+								"label.MuiInputLabel-shrink ": {
+									marginLeft: 0,
+								},
+								input: {
+									marginLeft: "10px",
+								},
+							}}
+							fullWidth
+							value={name}
+						/>
+						<TextField
+							label="Phone"
+							onChange={(e) => setPhone(e.target.value)}
+							required
+							variant="outlined"
+							color="primary"
+							sx={{
+								mb: 3,
+								".MuiInputBase-root": { borderRadius: "25px" },
+								label: {
+									marginLeft: "10px",
+								},
+								"label.MuiInputLabel-shrink ": {
+									marginLeft: 0,
+								},
+								input: {
+									marginLeft: "10px",
+								},
+							}}
+							type="tel"
+							inputProps={{ pattern: "[0-9]{10}" }}
+							fullWidth
+							value={phone}
+						/>
+						{type === "ST" && (
+							<TextField
+								label="Address"
+								onChange={(e) => setAddress(e.target.value)}
+								required
+								multiline
+								rows={3}
+								variant="outlined"
+								color="primary"
+								sx={{
+									mb: 3,
+									".MuiInputBase-root": { borderRadius: "25px" },
+									label: {
+										marginLeft: "10px",
+									},
+									"label.MuiInputLabel-shrink ": {
+										marginLeft: 0,
+									},
+									input: {
+										marginLeft: "10px",
+									},
+								}}
+								fullWidth
+								value={address}
+							/>
+						)}
+						<TextField
+							label="Password"
+							onChange={(e) => setPassword(e.target.value)}
+							required
+							variant="outlined"
+							color="primary"
+							type="password"
+							value={password}
+							fullWidth
+							sx={{
+								mb: 3,
+								".MuiInputBase-root": { borderRadius: "25px" },
+								label: {
+									marginLeft: "10px",
+								},
+								"label.MuiInputLabel-shrink ": {
+									marginLeft: 0,
+								},
+								input: {
+									marginLeft: "10px",
+								},
+							}}
+						/>
+						<StyledButton
+							variant="contained"
+							color="success"
+							type="submit"
+							sx={{
+								borderRadius: "20px",
+								height: "50px",
+								width: "150px",
+								fontSize: "18px",
+							}}
+						>
+							Register
+						</StyledButton>
+						<StyledButton
+							variant="contained"
+							color="error"
+							onClick={() => Navigate("/")}
+							sx={{
+								borderRadius: "20px",
+								height: "50px",
+								width: "150px",
+								fontSize: "18px",
+								display: "block",
+							}}
+						>
+							Back
+						</StyledButton>
+					</form>
+				)}
 			</Box>
 		</>
 	);
