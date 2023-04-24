@@ -4,7 +4,7 @@ import { AppContext } from "../../../context/Context";
 
 const Warden = () => {
 	const { user } = useContext(AppContext);
-
+	console.log(user);
 	return (
 		<>
 			<Info user={user} />

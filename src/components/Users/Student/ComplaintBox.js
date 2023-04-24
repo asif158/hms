@@ -1,6 +1,30 @@
 import { Avatar, Box, Button, Modal, TextField, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../../context/Context";
+import styled from "@emotion/styled";
+
+const StyledAvatar = styled(Avatar)`
+	color: azure;
+	animation: animate 10s ease infinite;
+	background-size: 400%;
+	@keyframes animate {
+		0% {
+			background-position: 0% 0%;
+		}
+		25% {
+			background-position: 50% 0%;
+		}
+		50% {
+			background-position: 100% 0%;
+		}
+		75% {
+			background-position: 50% 0%;
+		}
+		100% {
+			background-position: 0% 0%;
+		}
+	}
+`;
 
 const ComplaintBox = ({ open, setOpen, name }) => {
 	const [body, setBody] = useState("");
@@ -24,7 +48,14 @@ const ComplaintBox = ({ open, setOpen, name }) => {
 					Write complaint
 				</Typography>
 				<Box sx={{ display: "flex", alignItems: "center", gap: "10px", marginY: "20px" }}>
-					<Avatar src="https://mui.com/static/images/avatar/2.jpg" sx={{ width: 30, height: 30 }} />
+					<StyledAvatar
+						sx={{
+							// fontSize: "48px",
+							background: "linear-gradient(45deg,#845eb3,#d65db1,#ff6f91,#ff9671,#ffc75f)",
+						}}
+					>
+						{name.split(" ")[0][0]}
+					</StyledAvatar>
 					<Typography fontWeight={500} variant="span">
 						{name}
 					</Typography>

@@ -23,7 +23,7 @@ const Home = () => {
 					<Box
 						sx={{
 							display: "flex",
-							justifyContent: "center",
+							flexDirection: "column",
 							flexWrap: "wrap",
 							paddingX: "10%",
 							".MuiAccordion-root": {

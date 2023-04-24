@@ -1,98 +1,88 @@
 import React from "react";
-import { Component, useRef } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import styled from "@emotion/styled";
-import {ReactToPrint}  from "react-to-print";
-import { Page,Text,Image,Document,StyleSheet } from "@react-pdf/renderer";
-
-const style = StyleSheet.create({});
 
 const StyledBox = styled(Box)`
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),
-    url("https://images.alphacoders.com/612/612109.jpg");
-  background-repeat: no-repeat;
-  background-size: 100%;
+	background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
+		url("https://images.unsplash.com/photo-1652195057379-62ecfa7dc04d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1779&q=80");
+	background-size: cover;
+	font-family: "Poppins", sans-serif;
 `;
 
+const StyledButton = styled(Button)(() => ({
+	fontFamily: "'Poppins', sans-serif",
+	position: "relative",
+	fontSize: "20px",
+	borderRadius: "25px",
+	background: "transparent",
+	height: "50px",
+	width: "150px",
+	transition: "all 0.35s ease",
+	overflow: "hidden",
+	border: "2px solid rgba(0,0,0,0.5)",
+	color: "rgba(0,0,0,0.75)",
+	":hover": {
+		background: "transparent",
+		transform: "translateY(-5px)",
+	},
+}));
+
 const LandingPage = () => {
-  const componentRef = useRef();
-  return (
-		
-		
+	return (
+		<StyledBox
+			sx={{
+				height: "100vh",
 
-      <StyledBox
-        sx={{
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-         //buffer 
-
-          alignItems: "center",
-          // backgroundImage:
-        }}
-      >
-        <Box
-          sx={{
-            color: "white",
-            textAlign: "center",
-            position: "absolute",
-            textShadow: "1px 1px 2px black, 0 0 1em black",
-            fontSize: "80px",
-            width: "1300px",
-            marginBottom: "100px",
-            fontFamily: "Helvetica",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-evenly",
-          }}
-        >
-          Welcome to
-          <span style={{ fontSize: "100px", marginBottom: "30px" }}>
-            {" "}
-            Hostel Management System{" "}
-          </span>{" "}
-          IIIT, Ranchi
-        </Box>
-
-        <Button
-          href="/login"
-          sx={{
-            fontSize: "24px",
-            margin: "10px",
-            borderRadius: "25px",
-            textShadow: "2px 2px 2px black",
-            marginTop: "360px",
-            background: "rgba(0,0,0,0.5)",
-            height: "50px",
-            ":hover": {
-              background: "rgba(0,0,0,0.7)",
-            },
-          }}
-          variant="contained"
-        >
-          Login
-        </Button>
-        <Button
-          href="/register"
-          sx={{
-            fontSize: "24px",
-            margin: "10px",
-            borderRadius: "25px",
-            textShadow: "2px 2px 2px black",
-            background: "rgba(0,0,0,0.5)",
-            height: "50px",
-            marginTop: "360px",
-            ":hover": {
-              background: "rgba(0,0,0,0.7)",
-            },
-          }}
-          variant="contained"
-        >
-          Register
-        </Button>
-      </StyledBox>
-		  
-  );
+				width: "100vw",
+			}}
+		>
+			<Box
+				sx={{
+					backdropFilter: "blur(5px)",
+					width: "100%",
+					height: "100%",
+					display: "flex",
+					justifyContent: "space-evenly",
+					alignItems: "center",
+					flexDirection: "column",
+					background: "rgba(0,0,0,0.1)",
+				}}
+			>
+				<Box
+					sx={{
+						textAlign: "center",
+						flex: "3",
+						display: "flex",
+						flexDirection: "column",
+						justifyContent: "space-evenly",
+						backdropFilter: "blue(5px)",
+					}}
+				>
+					<span style={{ fontSize: "40px", fontWeight: 300 }}> Welcome to</span>
+					<span style={{ fontSize: "100px", marginY: "30px", fontWeight: 500 }}>
+						Hostel Management System
+					</span>
+					<span style={{ fontSize: "80px", fontWeight: 400 }}> IIIT, Ranchi</span>
+				</Box>
+				<Box
+					sx={{
+						flex: "1",
+						display: "flex",
+						width: "40%",
+						justifyContent: "space-evenly",
+						boxSizing: "border-box",
+					}}
+				>
+					<StyledButton href="/login" variant="contained">
+						Login
+					</StyledButton>
+					<StyledButton href="/register" variant="contained">
+						Register
+					</StyledButton>
+				</Box>
+			</Box>
+		</StyledBox>
+	);
 };
 
 export default LandingPage;

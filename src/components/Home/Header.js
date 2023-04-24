@@ -1,4 +1,4 @@
-import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
+import { AppBar, IconButton, Toolbar, Tooltip, Typography } from "@mui/material";
 import React from "react";
 import { Logout } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +25,9 @@ const Header = () => {
 						onClick={handleLogout}
 						color="inherit"
 					>
-						<Logout />
+						<Tooltip title="Logout">
+							<Logout />
+						</Tooltip>
 					</IconButton>
 				</div>
 			</Toolbar>

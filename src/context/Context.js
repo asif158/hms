@@ -9,7 +9,6 @@ export const AppProvider = ({ children }) => {
 	useEffect(() => {
 		const type = user?.uid.slice(0, 2);
 		const getUser = async () => {
-			console.log("USEEFFECT SHIT GOING DOWN");
 			let newUser;
 			try {
 				if (type === "ST") {
@@ -102,6 +101,8 @@ export const AppProvider = ({ children }) => {
 						phone,
 						password,
 					});
+					console.log(name, phone, password);
+					console.log("NEW USER", registered.data.staff);
 					setUser(registered.data.staff);
 					break;
 				case "MM":
@@ -120,7 +121,6 @@ export const AppProvider = ({ children }) => {
 	};
 
 	const fetchUser = async () => {
-		console.log("SHIT'S GOING DOWN");
 		const type = user.uid.slice(0, 2);
 		if (type === "ST") {
 			const newUser = await axios.get(`http://localhost:5000/api/v1/student/${user._id}`);
@@ -143,8 +143,15 @@ export const AppProvider = ({ children }) => {
 		await fetchUser();
 	};
 
+	const editMessCharge = async (id, due) => {
+		await axios.post("http://localhost:5000/api/v1/manager/studentmessdue", {
+			studentUid: id,
+			messdue: due,
+		});
+	};
+
 	return (
-		<AppContext.Provider value={{ registerUser, loginUser, user, addComplain, deleteComplain }}>
+		<AppContext.Provider value={{ registerUser, loginUser, user, addComplain, deleteComplain, editMessCharge }}>
 			{children}
 		</AppContext.Provider>
 	);
