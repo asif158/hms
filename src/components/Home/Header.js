@@ -14,7 +14,7 @@ const Header = () => {
 		<AppBar position="sticky">
 			<Toolbar>
 				<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-					Hall Management Portal
+					Hall Management System
 				</Typography>
 				<div>
 					<IconButton

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, keyframes } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/Context";
@@ -43,15 +43,13 @@ const Login = () => {
 				sx={{
 					width: "100vw",
 					height: "100vh",
-					background:
-						"url('https://images.unsplash.com/photo-1652195057379-62ecfa7dc04d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1779&q=80')",
+					background: "url('images/bg-login.jpeg')",
 					display: "flex",
 					backgroundSize: "cover",
-					justifyContent: "center",
 					alignItems: "center",
 				}}
 			>
-				<Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+				<Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "10%" }}>
 					<form
 						autoComplete="off"
 						onSubmit={handleSubmit}
@@ -137,6 +135,7 @@ const Login = () => {
 							<StyledButton
 								variant="contained"
 								color="info"
+								disableElevation
 								type="submit"
 								sx={{
 									borderRadius: "20px",
@@ -147,6 +146,7 @@ const Login = () => {
 								Login
 							</StyledButton>
 							<StyledButton
+								disableElevation
 								variant="contained"
 								color="error"
 								onClick={() => Navigate("/")}

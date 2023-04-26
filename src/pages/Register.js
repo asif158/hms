@@ -43,14 +43,23 @@ const Register = () => {
 				sx={{
 					width: "100vw",
 					height: "100vh",
-					background:
-						"linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),url('https://images.unsplash.com/photo-1652195057379-62ecfa7dc04d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1779&q=80')",
+					backgroundSize: "cover",
+					display: "flex",
+					alignItems: "center",
 				}}
 			>
 				<Box
 					sx={{
-						backdropFilter: "blur(5px)",
-						width: "100%",
+						width: "50%",
+						height: "50%",
+						backgroundImage: "url('images/bg-reg.jpeg')",
+						backgroundSize: "contain",
+						backgroundRepeat: "no-repeat",
+					}}
+				></Box>
+				<Box
+					sx={{
+						width: "50%",
 						height: "100%",
 						display: "flex",
 						flexDirection: "column",
@@ -69,7 +78,7 @@ const Register = () => {
 
 					<FormControl
 						sx={{
-							marginX: "16%",
+							marginX: "5%",
 							marginY: "20px",
 							fontFamily: "'Poppins', sans-serif",
 							".MuiInputBase-root": { borderRadius: "25px" },
@@ -115,7 +124,7 @@ const Register = () => {
 						</Select>
 					</FormControl>
 					{type.length > 0 && (
-						<form autoComplete="off" onSubmit={handleSubmit} style={{ margin: "0 16%" }}>
+						<form autoComplete="off" onSubmit={handleSubmit} style={{ margin: "0 5%" }}>
 							<TextField
 								label="Full Name"
 								onChange={(e) => setName(e.target.value)}
