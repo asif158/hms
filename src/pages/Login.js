@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box, Button, TextField, keyframes } from "@mui/material";
+import { Box, Button, TextField, } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/Context";
@@ -43,7 +43,7 @@ const Login = () => {
 				sx={{
 					width: "100vw",
 					height: "100vh",
-					background: "url('images/bg-login.jpeg')",
+					background: "url('images/bg-login.webp')",
 					display: "flex",
 					backgroundSize: "cover",
 					alignItems: "center",

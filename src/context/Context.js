@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL
+
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
@@ -12,9 +14,9 @@ export const AppProvider = ({ children }) => {
 			let newUser;
 			try {
 				if (type === "ST") {
-					newUser = await axios.get(`http://localhost:5000/api/v1/student/${user._id}`);
+					newUser = await axios.get(`${BASE_URL}/student/${user._id}`);
 				} else if (type === "SW") {
-					newUser = await axios.get(`http://localhost:5000/api/v1/staff/${user._id}`);
+					newUser = await axios.get(`${BASE_URL}/staff/${user._id}`);
 				}
 			} catch (error) {
 				console.log(error);
@@ -38,7 +40,7 @@ export const AppProvider = ({ children }) => {
 			let logged;
 			switch (type) {
 				case "ST":
-					logged = await axios.post("http://localhost:5000/api/v1/student/login", {
+					logged = await axios.post(`${BASE_URL}/student/login`, {
 						uid,
 						password,
 					});
@@ -46,21 +48,21 @@ export const AppProvider = ({ children }) => {
 
 					return logged.data.status;
 				case "SS":
-					logged = await axios.post("http://localhost:5000/api/v1/staff/login", {
+					logged = await axios.post(`${BASE_URL}/staff/login`, {
 						uid,
 						password,
 					});
 					if (logged.data.status) setUser(logged.data.staff);
 					return logged.data.status;
 				case "SW":
-					logged = await axios.post("http://localhost:5000/api/v1/staff/login", {
+					logged = await axios.post(`${BASE_URL}/staff/login`, {
 						uid,
 						password,
 					});
 					if (logged.data.status) setUser(logged.data.staff);
 					return logged.data.status;
 				case "MM":
-					logged = await axios.post("http://localhost:5000/api/v1/manager/login", {
+					logged = await axios.post(`${BASE_URL}/manager/login`, {
 						uid,
 						password,
 					});
@@ -79,7 +81,7 @@ export const AppProvider = ({ children }) => {
 			let registered;
 			switch (type) {
 				case "ST":
-					registered = await axios.post("http://localhost:5000/api/v1/student/register", {
+					registered = await axios.post(`${BASE_URL}/student/register`, {
 						name,
 						phone,
 						address,
@@ -88,7 +90,7 @@ export const AppProvider = ({ children }) => {
 					setUser(registered.data.student);
 					break;
 				case "SS":
-					registered = await axios.post("http://localhost:5000/api/v1/staff/register", {
+					registered = await axios.post(`${BASE_URL}/staff/register`, {
 						name,
 						phone,
 						password,
@@ -96,7 +98,7 @@ export const AppProvider = ({ children }) => {
 					setUser(registered.data.staff);
 					break;
 				case "SW":
-					registered = await axios.post("http://localhost:5000/api/v1/staff/warden/register", {
+					registered = await axios.post(`${BASE_URL}/staff/warden/register`, {
 						name,
 						phone,
 						password,
@@ -106,7 +108,7 @@ export const AppProvider = ({ children }) => {
 					setUser(registered.data.staff);
 					break;
 				case "MM":
-					registered = await axios.post("http://localhost:5000/api/v1/manager/register", {
+					registered = await axios.post(`${BASE_URL}/manager/register`, {
 						name,
 						phone,
 						password,
@@ -123,28 +125,28 @@ export const AppProvider = ({ children }) => {
 	const fetchUser = async () => {
 		const type = user.uid.slice(0, 2);
 		if (type === "ST") {
-			const newUser = await axios.get(`http://localhost:5000/api/v1/student/${user._id}`);
+			const newUser = await axios.get(`${BASE_URL}/student/${user._id}`);
 			setUser(newUser.data.student);
 		} else {
-			const newUser = await axios.get(`http://localhost:5000/api/v1/staff/${user._id}`);
+			const newUser = await axios.get(`${BASE_URL}/staff/${user._id}`);
 			setUser(newUser.data.staff);
 		}
 	};
 
 	const addComplain = async (body) => {
-		await axios.post(`http://localhost:5000/api/v1/student/makecomplaint/${user._id}`, {
+		await axios.post(`${BASE_URL}/student/makecomplaint/${user._id}`, {
 			body,
 		});
 		await fetchUser();
 	};
 
 	const deleteComplain = async (id) => {
-		await axios.delete(`http://localhost:5000/api/v1/complaint/delete/${id}`);
+		await axios.delete(`${BASE_URL}/complaint/delete/${id}`);
 		await fetchUser();
 	};
 
 	const editMessCharge = async (id, due) => {
-		await axios.post("http://localhost:5000/api/v1/manager/studentmessdue", {
+		await axios.post(`${BASE_URL}/manager/studentmessdue`, {
 			studentUid: id,
 			messdue: due,
 		});

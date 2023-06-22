@@ -1,20 +1,13 @@
-import { Close, ExpandMore, Favorite, MoreVert, Share } from "@mui/icons-material";
+import { Close } from "@mui/icons-material";
 import {
-	Avatar,
-	Button,
 	Card,
-	CardActions,
 	CardContent,
 	CardHeader,
-	CardMedia,
-	Checkbox,
 	Collapse,
 	Divider,
-	IconButton,
 	Tooltip,
 	Typography,
 } from "@mui/material";
-import { red } from "@mui/material/colors";
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../../context/Context";
 

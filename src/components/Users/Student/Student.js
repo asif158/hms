@@ -6,11 +6,7 @@ import { AppContext } from "../../../context/Context";
 
 const Student = () => {
 	const [open, setOpen] = useState(false);
-	const { user, fetchUser } = useContext(AppContext);
-	// const refresh = async () => {
-	// 	await fetchUser();
-	// };
-	// refresh();
+	const { user } = useContext(AppContext);
 
 	return (
 		<>

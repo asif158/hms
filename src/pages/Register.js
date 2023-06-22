@@ -52,7 +52,7 @@ const Register = () => {
 					sx={{
 						width: "50%",
 						height: "50%",
-						backgroundImage: "url('images/bg-reg.jpeg')",
+						backgroundImage: "url('images/bg-reg.webp')",
 						backgroundSize: "contain",
 						backgroundRepeat: "no-repeat",
 					}}

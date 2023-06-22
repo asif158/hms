@@ -3,7 +3,7 @@ import { Box, Button } from "@mui/material";
 import styled from "@emotion/styled";
 
 const StyledBox = styled(Box)`
-	background: url("images/bg1.jpeg");
+	background: url("images/bg1.webp");
 	background-size: cover;
 `;
 
